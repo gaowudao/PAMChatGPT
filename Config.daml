@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArcGIS defaultAssembly="PAMChatGPT.dll"
+        defaultNamespace="PAMChatGPT"
+        xmlns="http://schemas.esri.com/DADF/Registry"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+
+  <AddInInfo id="{fcc83fcd-d87c-41bb-968f-61f52f489f01}" version="1.0" desktopVersion="3.1.41833">
+    <Name>PAMChatGPT</Name>   
+    <Description>Ask ChatGPT</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>nicogis</Author>
+    <Company>Studio A&amp;T s.r.l.</Company>
+    <Date>4/26/2023 5:02:58 PM</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+
+  <modules>
+    <insertModule id="PAMChatGPT_Module" className="ModuleChatGPT" autoLoad="false" caption="Module1">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <!--<tab id="PAMChatGPT_Tab1" caption="New Tab">
+          <group refID="PAMChatGPT_Group1"/>
+        </tab>-->
+      </tabs>
+              
+      <groups>
+        <!-- comment this out if you have no controls on the Addin tab to avoid
+              an empty group-->
+        <group id="PAMChatGPT_Group1" caption="Group 1" appearsOnAddInTab="true">
+			<button refID="Dockpane_ChatGPTDockpane_ShowButton" size="large" />
+        </group>
+		  
+		  
+      </groups>
+      
+      <controls>
+        <!-- add your controls here -->
+		  <button id="Dockpane_ChatGPTDockpane_ShowButton" caption="Show ChatGPT" className="ChatGPTDockpane_ShowButton" loadOnClick="true" smallImage="Images\ChatGPT16.png" largeImage="Images\ChatGPT32.png">
+			  <tooltip heading="Show Dockpane">
+				  Show Dockpane<disabledText />
+			  </tooltip>
+		  </button>
+      </controls>
+		<dockPanes>
+			<dockPane id="Dockpane_ChatGPTDockpane" caption="Ask ChatGPT" className="ChatGPTDockpaneViewModel" keytip="Ask ChatGPT" initiallyVisible="true" dock="group" dockWith="esri_core_contentsDockPane">
+				<content className="ChatGPTDockpaneView" />
+			</dockPane>
+		</dockPanes>
+    </insertModule>
+  </modules>
+</ArcGIS>
