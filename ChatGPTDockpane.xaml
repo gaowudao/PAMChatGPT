@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:extensions="clr-namespace:ArcGIS.Desktop.Extensions;assembly=ArcGIS.Desktop.Extensions"
+             xmlns:mdxam="clr-namespace:MdXaml;assembly=MdXaml"
              xmlns:local="clr-namespace:PAMChatGPT"
-             mc:Ignorable="d"
-             d:DataContext="{Binding Path=PAMChatGPT.ChatGPTDockpaneViewModel}">
+             d:DataContext="{Binding Path=PAMChatGPT.ChatGPTDockpaneViewModel}"
+             mc:Ignorable="d">
              
     <UserControl.Resources>
         <ResourceDictionary>
@@ -32,11 +33,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBlock TextWrapping="Wrap">
-                            <Run Text="{Binding MessageFrom}" />
-                            <Run Text=": " />
-                            <Run Text="{Binding Text}" />
-                        </TextBlock>
+                        
+                    
+                            <mdxam:MarkdownScrollViewer
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            Markdown="{Binding Result, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>
+                           
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

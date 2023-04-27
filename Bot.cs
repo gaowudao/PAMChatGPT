@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAMChatGPT
 {
-    public class  Bot
+    public class Bot
     {
         
         private readonly OpenAIAPI api;
@@ -28,38 +28,35 @@ namespace PAMChatGPT
             try
             {
                 CreateConversationIfNotExistAsync();
-                chat.AppendUserInput(text);
-                string response = await chat.GetResponseFromChatbotAsync();
-                //await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
-                //{
-                //    Console.Write(res);
-                //}
-
-
-                Messages.Add(new Message
-                {
-                    MessageFrom = MessageFrom.User,
-                    Text = text,
-                });
 
                 Messages.Add(new Message
                 {
                     MessageFrom = MessageFrom.Bot,
-                    Text = response,
+                    Text = text,
                 });
+
+                chat.AppendUserInput(text);
+                string response = await chat.GetResponseFromChatbotAsync();
+
+                Message message = new Message();
+                message.MessageFrom = MessageFrom.User;
+                message.Text = response;
+                Messages.Add(message);
+                //await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
+                //{
+                //    message.Text += res;
+                //}
+
             }
             catch (Exception ex)
             {
                 Messages.Add(new Message
                 {
                     MessageFrom = MessageFrom.System,
-                    Text = ex.Message,
+                    Text = ex.Message
                 });
             }
 
-
-
-            
         }
 
         private void CreateConversationIfNotExistAsync()
