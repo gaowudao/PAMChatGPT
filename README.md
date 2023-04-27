@@ -2,4 +2,4 @@
 
 Call ChatGTP from ArcGIS Pro (this is a basic implementation)
 
-![Addin ArcGIS Pro ChatGPT](Help.png)
+![Addin ArcGIS Pro ChatGPT](Help.PNG)
